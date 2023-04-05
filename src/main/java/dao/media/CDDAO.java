@@ -1,4 +1,4 @@
-package dao.media;
+﻿package dao.media;
 
 import entity.db.AIMSDB;
 import entity.media.CD;
@@ -45,3 +45,4 @@ public class CDDAO extends MediaDAO {
         }
     }
 }
+/* class CDDAO cũng có common coupling với các class khác vì nó cũng sử dụng MediaDAO và Media để truy vấn và xử lý thông tin của đối tượng CD.*/

@@ -1,4 +1,4 @@
-package entity.media;
+﻿package entity.media;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -110,3 +110,4 @@ public class DVD extends Media {
                 + releasedDate + "'" + ", filmType='" + filmType + "'" + "}";
     }
 }
+/*class DVD có common coupling với class Media vì class DVD kế thừa từ class Media, và các thuộc tính và phương thức của class Media được sử dụng trong class DVD thông qua việc gọi super().*/

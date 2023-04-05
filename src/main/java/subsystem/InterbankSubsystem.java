@@ -1,4 +1,4 @@
-package subsystem;
+﻿package subsystem;
 
 import entity.payment.CreditCard;
 import entity.payment.PaymentTransaction;
@@ -44,3 +44,5 @@ public class InterbankSubsystem implements InterbankInterface {
 		return transaction;
 	}
 }
+/*Có common coupling vì lớp InterbankSubsystem phụ thuộc vào lớp InterbankSubsystemController trong việc triển khai các phương thức của InterbankInterface.
+Nếu lớp InterbankSubsystemController thay đổi, lớp InterbankSubsystem cũng phải được sửa đổi để thích ứng.*/

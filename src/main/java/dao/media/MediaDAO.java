@@ -1,4 +1,4 @@
-package dao.media;
+﻿package dao.media;
 
 import entity.db.AIMSDB;
 import entity.media.Media;
@@ -61,3 +61,4 @@ public class MediaDAO {
                 + "where id=" + id + ";");
     }
 }
+/*lớp MediaDAO sử dụng lớp AIMSDB từ package entity.db để thực hiện các truy vấn đến cơ sở dữ liệu, vì vậy nó có common coupling.*/

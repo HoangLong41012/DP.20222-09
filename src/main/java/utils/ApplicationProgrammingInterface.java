@@ -1,4 +1,4 @@
-package utils;
+﻿package utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -92,3 +92,5 @@ public class ApplicationProgrammingInterface {
 		}
 	}
 }
+/*có common coupling trong class này có một số phương thức sử dụng logger, URL, HttpURLConnection và các lớp IO như
+BufferedReader, BufferedWriter và InputStreamReader. Điều này đưa ra sự phụ thuộc chặt chẽ giữa class này và các lớp bên ngoài.*/

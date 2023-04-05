@@ -1,4 +1,4 @@
-package entity.order;
+﻿package entity.order;
 
 import controller.SessionInformation;
 import entity.cart.Cart;
@@ -72,3 +72,4 @@ public class Order {
         return this.subtotal + this.tax + this.shippingFees;
     }
 }
+/* trong lớp Order, có sự tham chiếu tới các lớp CartItem, OrderItem, DeliveryInfo và ViewsConfig. Việc tham chiếu này gây ra common coupling.*/

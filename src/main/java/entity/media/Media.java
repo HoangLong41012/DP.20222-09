@@ -1,4 +1,4 @@
-package entity.media;
+﻿package entity.media;
 
 import dao.media.MediaDAO;
 import entity.db.AIMSDB;
@@ -111,3 +111,6 @@ public class Media {
         return this;
     }
 }
+/*class Media có common coupling với class MediaDAO và class AIMSDB. 
+Class Media sử dụng đối tượng MediaDAO để lấy thông tin số lượng hiện tại
+của sản phẩm và sử dụng đối tượng AIMSDB để tạo statement cho database connection.*/

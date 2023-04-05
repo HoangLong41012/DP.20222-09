@@ -1,4 +1,4 @@
-package dao.media;
+﻿package dao.media;
 
 import entity.db.AIMSDB;
 import entity.media.DVD;
@@ -46,3 +46,4 @@ public class DVDDAO extends MediaDAO {
         }
     }
 }
+/* class DVDDAO cũng có common coupling như class BookDAO. Cả hai class đều kết nối với cơ sở dữ liệu để lấy thông tin về các đối tượng Media và các thuộc tính đặc trưng của từng loại đối tượng Media. Do đó, nếu cấu trúc của cơ sở dữ liệu thay đổi, cả hai class đều cần được sửa đổi để phù hợp với cấu trúc mới.*/

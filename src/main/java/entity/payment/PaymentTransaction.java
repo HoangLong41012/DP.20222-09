@@ -1,4 +1,4 @@
-package entity.payment;
+﻿package entity.payment;
 
 public class PaymentTransaction {
 	private String errorCode;
@@ -23,3 +23,5 @@ public class PaymentTransaction {
 		return errorCode;
 	}
 }
+/* có common coupling vì các lớp khác nhau (IntroScreenHandler, HomeScreenHandler, ViewsConfig) đều phụ thuộc vào nhau thông qua sử dụng chung 
+một biến định nghĩa các đường dẫn đến các tệp FXML (INTRO_SCREEN_PATH, HOME_PATH) trong lớp ViewsConfig.*/

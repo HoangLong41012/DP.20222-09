@@ -1,4 +1,4 @@
-package subsystem.interbank;
+﻿package subsystem.interbank;
 
 import common.exception.*;
 import entity.payment.CreditCard;
@@ -120,3 +120,5 @@ public class InterbankPayloadConverter {
         return dateFormat.format(date);
     }
 }
+/*lớp InterbankPayloadConverter có common coupling với các lớp khác do nó sử dụng các đối tượng và hằng số từ các lớp khác như CreditCard, PaymentTransaction và InterbankConfigs. 
+Ngoài ra, lớp này cũng ném ra các ngoại lệ (exception) khi có lỗi xảy ra, gây ra sự phụ thuộc vào các lớp xử lý ngoại lệ.*/

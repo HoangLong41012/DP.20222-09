@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import common.exception.InvalidDeliveryInfoException;
 import entity.cart.Cart;
@@ -115,3 +115,4 @@ public class PlaceOrderController extends BaseController {
         return matcher.matches();
     }
 }
+/* trong lớp PlaceOrderController, phương thức processDeliveryInfo() sử dụng lớp DeliveryInfo, lớp DistanceCalculator và lớp InvalidDeliveryInfoException từ package entity.shipping, org.example và common.exception tương ứng. Do đó, có sự kết nối chung giữa PlaceOrderController và các package này, gây ra common coupling.*/

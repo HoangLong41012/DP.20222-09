@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -107,3 +107,5 @@ public class PaymentController extends BaseController {
         SessionInformation.cartInstance.emptyCart();
     }
 }
+/* trong lớp PaymentController, có sử dụng các lớp khác như CreditCard, InterbankSubsystem, PaymentTransaction, PaymentException,
+UnrecognizedException, và cả Cart thông qua đối tượng SessionInformation.cartInstance.*/
