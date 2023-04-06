@@ -15,6 +15,7 @@ public class ViewCartController extends BaseController{
      * @throws SQLException
      */
     public void checkAvailabilityOfProduct() throws SQLException{
+        // vi pham content coupling o SessionInformation
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
     }
 
@@ -23,6 +24,7 @@ public class ViewCartController extends BaseController{
      * @return subtotal
      */
     public int getCartSubtotal(){
+        // vi pham content coupling o SessionInformation
         int subtotal = SessionInformation.cartInstance.calSubtotal();
         return subtotal;
     }

@@ -17,11 +17,12 @@ public class CartItem {
         this.quantity = quantity;
         this.price = price;
     }
-    
+
     public Media getMedia() {
         return this.media;
     }
 
+    // data coupling
     public void setMedia(Media media) {
         this.media = media;
     }

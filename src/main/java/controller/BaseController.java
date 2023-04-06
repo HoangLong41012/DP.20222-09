@@ -18,6 +18,7 @@ public class BaseController {
      * @return CartMedia or null
      */
     public CartItem checkMediaInCart(Media media){
+        // vi pham content coupling o SessionInformation
         return SessionInformation.cartInstance.checkMediaInCart(media);
     }
 
@@ -26,6 +27,7 @@ public class BaseController {
      * @return List[CartMedia]
      */
     public List getListCartMedia(){
+        // vi pham content coupling o SessionInformation
         return SessionInformation.cartInstance.getListMedia();
     }
 }

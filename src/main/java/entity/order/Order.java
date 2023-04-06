@@ -34,6 +34,7 @@ public class Order {
             orderItems.add(orderItem);
         }
         this.orderMediaList = Collections.unmodifiableList(orderItems);
+        // data coupling
         this.subtotal = cart.calSubtotal();
         this.tax = (int) (ViewsConfig.PERCENT_VAT/100) * subtotal;
     }

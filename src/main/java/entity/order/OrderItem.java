@@ -28,6 +28,7 @@ public class OrderItem {
     }
 
     public void setMedia(Media media) {
+        // data coupling
         this.media = media;
     }
 

@@ -16,10 +16,12 @@ public class Cart {
     }
 
     public void addCartMedia(CartItem cm){
+        // data coupling
         lstCartItem.add(cm);
     }
 
     public void removeCartMedia(CartItem cm){
+        // data coupling
         lstCartItem.remove(cm);
     }
 
@@ -62,6 +64,7 @@ public class Cart {
 
     public CartItem checkMediaInCart(Media media){
         for (CartItem cartItem : lstCartItem) {
+            // sample coupling
             if (cartItem.getMedia().getId() == media.getId()) return cartItem;
         }
         return null;

@@ -33,6 +33,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public void placeOrder() throws SQLException {
+        // vi pham content coupling o SessionInformation
         SessionInformation.cartInstance.checkAvailabilityOfProduct();
     }
 

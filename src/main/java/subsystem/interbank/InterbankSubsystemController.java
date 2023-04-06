@@ -13,6 +13,7 @@ public class InterbankSubsystemController {
 	}
 
 	public PaymentTransaction payOrder(CreditCard card, int amount, String contents) {
+		// data coupling
 		String requestPayload = interbankPayloadConverter.convertToRequestPayload(card, amount, contents);
 		String responseText = interbankBoundary.query(InterbankConfigs.PROCESS_TRANSACTION_URL, requestPayload);
 		return interbankPayloadConverter.extractPaymentTransaction(responseText);
