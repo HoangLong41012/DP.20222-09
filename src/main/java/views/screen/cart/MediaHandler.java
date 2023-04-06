@@ -67,6 +67,7 @@ public class MediaHandler extends FXMLScreenHandler {
 	}
 	
 	public void setCartItem(CartItem cartItem) {
+		// data coupling
 		this.cartItem = cartItem;
 		setMediaInfo();
 	}

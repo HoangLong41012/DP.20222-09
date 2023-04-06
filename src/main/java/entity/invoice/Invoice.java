@@ -12,6 +12,7 @@ public class Invoice {
     }
 
     public Invoice(Order order){
+        // data coupling
         this.order = order;
         this.amount = order.getTotal();
     }

@@ -26,6 +26,7 @@ public class InterbankPayloadConverter {
         Map<String, Object> transaction = new MyMap();
 
         try {
+            // data coupling
             transaction.putAll(MyMap.toMyMap(card));
         } catch (IllegalArgumentException | IllegalAccessException e) {
             // TODO Auto-generated catch block

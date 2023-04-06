@@ -12,6 +12,7 @@ public class PaymentTransaction {
                               int amount, String createdAt) {
 		super();
 		this.errorCode = errorCode;
+		// data coupling
 		this.card = card;
 		this.transactionId = transactionId;
 		this.transactionContent = transactionContent;
