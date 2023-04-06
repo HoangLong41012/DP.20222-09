@@ -49,4 +49,6 @@ public class BookDAO extends MediaDAO {
         }
     }
 }
-/*trong method getMediaById của class BookDAO, sử dụng câu truy vấn SQL để JOIN với bảng Media. Điều này đòi hỏi class BookDAO phải biết đến cấu trúc và thông tin của bảng Media, và phụ thuộc vào class AIMSDB để lấy kết nối đến cơ sở dữ liệu. Việc này tạo ra một common coupling giữa BookDAO và Media, cũng như AIMSDB.*/
+/*trong method getMediaById của class BookDAO, sử dụng câu truy vấn SQL để JOIN với bảng Media.
+Điều này đòi hỏi class BookDAO phải biết đến cấu trúc và thông tin của bảng Media, và phụ thuộc vào class AIMSDB để lấy kết nối
+đến cơ sở dữ liệu. Việc này tạo ra một common coupling giữa BookDAO và Media, cũng như AIMSDB.*/

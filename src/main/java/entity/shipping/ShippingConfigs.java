@@ -20,3 +20,4 @@ public class ShippingConfigs {
 
     public static int[] RUSH_SUPPORT_PROVINCES_INDEX = {22, 48};
 }
+//common coupling vì các thành phần của lớp có sử dụng từ khóa `static` nên có thể được sử dụng ở các class khác

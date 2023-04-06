@@ -72,4 +72,5 @@ public class Order {
         return this.subtotal + this.tax + this.shippingFees;
     }
 }
-/* trong lớp Order, có sự tham chiếu tới các lớp CartItem, OrderItem, DeliveryInfo và ViewsConfig. Việc tham chiếu này gây ra common coupling.*/
+/* trong lớp Order, có sự tham chiếu tới các lớp CartItem, OrderItem, DeliveryInfo và ViewsConfig.
+Việc tham chiếu này gây ra common coupling.*/

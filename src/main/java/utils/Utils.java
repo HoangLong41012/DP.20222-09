@@ -1,4 +1,4 @@
-package utils;
+﻿package utils;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -26,3 +26,4 @@ public class Utils {
 	}
 
 }
+//common coupling vì các thành phần của lớp có sử dụng từ khóa `static` nên có thể được sử dụng ở các class khác

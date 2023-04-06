@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import entity.cart.Cart;
 import entity.user.User;
@@ -14,3 +14,4 @@ public class SessionInformation {
     public static LocalDateTime expiredTime;
 
 }
+//common coupling vì các thành phần của lớp có sử dụng từ khóa `static` nên có thể được sử dụng ở các class khác

@@ -1,4 +1,4 @@
-package controller;
+﻿package controller;
 
 import common.exception.ExpiredSessionException;
 import common.exception.FailLoginException;
@@ -77,4 +77,6 @@ public class AuthenticationController extends BaseController {
         return digest;
     }
 
-}
+}/* có control coupling.phương thức getMainUser(), nó sử dụng đối tượng SessionInformation
+để kiểm tra thông tin user và thời gian hết hạn phiên đăng nhập, nhưng đối tượng này không được truyền vào phương thức,
+mà là một biến tĩnh (static) được lưu trữ trong class SessionInformation.*/

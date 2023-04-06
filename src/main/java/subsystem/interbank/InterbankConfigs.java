@@ -1,4 +1,4 @@
-package subsystem.interbank;
+﻿package subsystem.interbank;
 
 /**
  * @author
@@ -15,3 +15,4 @@ public class InterbankConfigs {
     static final String PAY_COMMAND = "pay";
     static final String VERSION = "1.0.0";
 }
+//common coupling vì các thành phần của lớp có sử dụng từ khóa `static` nên có thể được sử dụng ở các class khác

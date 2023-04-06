@@ -1,4 +1,4 @@
-package utils;
+﻿package utils;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -214,3 +214,4 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	}
 
 }
+//common coupling vì các thành phần của lớp có sử dụng từ khóa `static` nên có thể được sử dụng ở các class khác

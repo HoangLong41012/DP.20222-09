@@ -61,4 +61,5 @@ public class MediaDAO {
                 + "where id=" + id + ";");
     }
 }
-/*lớp MediaDAO sử dụng lớp AIMSDB từ package entity.db để thực hiện các truy vấn đến cơ sở dữ liệu, vì vậy nó có common coupling.*/
+/*lớp MediaDAO sử dụng lớp AIMSDB từ package entity.db để thực hiện các truy vấn đến cơ sở dữ liệu, 
+vì vậy nó có common coupling.*/

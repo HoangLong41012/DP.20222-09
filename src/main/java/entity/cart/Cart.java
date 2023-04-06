@@ -68,4 +68,6 @@ public class Cart {
     }
 
 }
-/*lớp Cart có common coupling với lớp Media. Lớp này trực tiếp sử dụng lớp Media để thực hiện kiểm tra tính khả dụng của sản phẩm và lấy thông tin của sản phẩm trong phương thức checkAvailabilityOfProduct() và checkMediaInCart(). Nếu có sự thay đổi trong lớp Media, lớp Cart sẽ phải được sửa đổi để phù hợp.*/
+/*lớp Cart có common coupling với lớp Media. Lớp này trực tiếp sử dụng lớp Media để thực hiện
+kiểm tra tính khả dụng của sản phẩm và lấy thông tin của sản phẩm trong phương thức checkAvailabilityOfProduct()
+và checkMediaInCart(). Nếu có sự thay đổi trong lớp Media, lớp Cart sẽ phải được sửa đổi để phù hợp.*/
