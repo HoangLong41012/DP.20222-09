@@ -61,6 +61,7 @@ public class ResultScreenHandler extends BaseScreenHandler {
 	private Label messageLabel;
 
 	@FXML
+	// coincidental cohesion
 	void confirmPayment(MouseEvent event) throws IOException {
 		homeScreenHandler.show();
 	}

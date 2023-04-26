@@ -103,6 +103,7 @@ public class PaymentController extends BaseController {
 		return result;
 	}
 
+	// Coincidental cohesion
 	public void emptyCart(){
         SessionInformation.cartInstance.emptyCart();
     }

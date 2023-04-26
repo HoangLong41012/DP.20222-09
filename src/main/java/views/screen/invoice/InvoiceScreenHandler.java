@@ -71,6 +71,7 @@ public class InvoiceScreenHandler extends BaseScreenHandler {
 		}
 	}
 
+	// logical cohesion
 	protected void setupData(Object dto) throws Exception {
 		this.invoice = (Invoice) dto;
 		Order order = invoice.getOrder();

@@ -22,6 +22,7 @@ public class MyMap extends LinkedHashMap<String, Object> {
 	 *         https://hg.openjdk.java.net/jdk8/jdk8/jdk/file/tip/src/share/classes/java/util/Hashtable.java
 	 * @return a {@link String String}.
 	 */
+	// logical cohesion
 	public String toJSON() {
 		int max = size() - 1;
 		if (max == -1)
