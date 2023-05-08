@@ -58,7 +58,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		}
 	}
 
-	// logical cohesion
+	// temporal cohesion
 	protected void setupData(Object dto) throws Exception {
 		this.invoice = (Invoice) dto;
 	}

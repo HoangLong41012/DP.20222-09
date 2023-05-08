@@ -39,7 +39,7 @@ public class IntroScreenHandler extends BaseScreenHandler {
     }
 
 
-    // logical cohesion
+    // temporal cohesion
     protected void setupData(Object dto) throws Exception {
         return;
     }

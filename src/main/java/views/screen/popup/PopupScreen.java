@@ -51,6 +51,7 @@ public class PopupScreen extends BaseScreenHandler {
         super.setImage(icon, path);
     }
 
+    // logical cohesion
     public void show(Boolean autoClose) {
         super.show();
         if (autoClose) close(0.8);
