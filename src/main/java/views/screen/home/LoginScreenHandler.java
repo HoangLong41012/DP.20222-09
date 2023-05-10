@@ -79,6 +79,8 @@ public class LoginScreenHandler extends BaseScreenHandler{
         }
     }
 
+    // Vi phạm OCP
+
     @FXML
     void backToHomeScreen(MouseEvent event) throws IOException, InterruptedException, SQLException {
         this.homeScreenHandler.show();

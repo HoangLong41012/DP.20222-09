@@ -37,6 +37,7 @@ public class ResultScreenHandler extends BaseScreenHandler {
 		}
 	}
 
+	// Vi phạm SRP và OCP
 
 	protected void setupData(Object dto) throws Exception {
 		Map<String, String> response = (Map<String, String>) dto;
