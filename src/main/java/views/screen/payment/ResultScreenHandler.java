@@ -37,6 +37,8 @@ public class ResultScreenHandler extends BaseScreenHandler {
 		}
 	}
 
+	// temporal cohesion
+    // vi pham SRP va OCP
 
 	protected void setupData(Object dto) throws Exception {
 		Map<String, String> response = (Map<String, String>) dto;

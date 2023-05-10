@@ -91,6 +91,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     public HomeController getBController() {
         return (HomeController) super.getBController();
     }
+    
+    // temporal cohesion
+    // vi pham SRP va OCP
 
     protected void setupData(Object dto) throws Exception {
         setBController(new HomeController());
