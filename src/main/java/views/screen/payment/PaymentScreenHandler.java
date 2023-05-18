@@ -59,7 +59,8 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	}
 
 	// temporal cohesion
-    // vi pham SRP va OCP
+    // vi phạm SRP 2 phương thức setupData và setupFunctionaity 
+	// có chức năng khác nhau, các lớp có nhiều hơn 1 trách nhiệm
 	protected void setupData(Object dto) throws Exception {
 		this.invoice = (Invoice) dto;
 	}

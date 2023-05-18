@@ -33,6 +33,8 @@ public class PopupScreen extends BaseScreenHandler {
         return popup;
     }
 
+    // ci phạm DIP do Các class view phụ thuộc vào class này. 
+    // PopupScreen là class dễ bị thay đổi, nên các class khác bị ảnh hưởng theo
     public static void success(String message) throws IOException{
         popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
                 .show(true);

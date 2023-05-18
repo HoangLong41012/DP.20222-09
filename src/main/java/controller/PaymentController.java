@@ -103,7 +103,7 @@ public class PaymentController extends BaseController {
 		return result;
 	}
 
-	// Coincidental cohesion
+	// vi phạm SRP do Phương thức emptyCart không thực hiện chức năng về thanh toán
 	public void emptyCart(){
         SessionInformation.cartInstance.emptyCart();
     }

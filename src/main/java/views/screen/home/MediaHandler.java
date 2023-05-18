@@ -49,6 +49,8 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     private Media media;
     private List<Observer> observerList;
 
+    // vi phạm OCP do Nếu màn có thêm nhiều button hơn (Xem chi tiết), cần thêm các thuộc tính cho button, 
+    // sửa lại constructor để thêm sự kiện cho button mới thêm
     public MediaHandler(String screenPath, Media media) throws SQLException, IOException{
         super(screenPath);
         this.media = media;

@@ -51,6 +51,11 @@ public class MediaDAO {
     }
 
 
+    // vi phạm OCP do Khi có Media có nhiều lớp con có các trường khác nhau, phương thức updateMediaFieldById 
+    // sẽ cần phải thay đổi để tương thích với từng loại lớp con
+    
+    // vi phạm LSP do Khi có Media có nhiều lớp con có các trường khác nhau, phương thức updateMediaFieldById 
+    // sẽ không thực thi đúng với từng loại lớp con do câu lệnh sql không đúng
     public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
         Statement stm = AIMSDB.getConnection().createStatement();
         if (value instanceof String){
