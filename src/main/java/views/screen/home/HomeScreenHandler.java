@@ -92,8 +92,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         return (HomeController) super.getBController();
     }
     
-    // temporal cohesion
-    // vi pham SRP va OCP
+    // vi pham temporal cohesion do setupData va setupFunctionality chi có lien quan voi nhau khi khoi chay view
+    // cai tien bang cach su dung Template, tao lop moi SetUpViewUtil co phuong thuc setupData, setupFunctionality, 
+    // setupView; cac lop view goi phuong thuc setupView, override setuoData va setupFunctionality
 
     protected void setupData(Object dto) throws Exception {
         setBController(new HomeController());

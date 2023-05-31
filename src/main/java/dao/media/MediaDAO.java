@@ -13,6 +13,7 @@ import java.util.List;
  * @author
  */
 public class MediaDAO {
+	// Cac lop DAO co the ap dung mau Singleton
 
     public List getAllMedia() throws SQLException {
         Statement stm = AIMSDB.getConnection().createStatement();

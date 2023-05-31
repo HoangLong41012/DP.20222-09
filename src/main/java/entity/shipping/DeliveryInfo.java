@@ -21,7 +21,8 @@ public class DeliveryInfo {
         this.distanceCalculator = distanceCalculator;
     }
 
-    // vi phạm DIP do Lớp Order phụ thuộc vào DeliveryInfo (agreegation), nhưng DeliveryInfo cũng phụ thuộc vào Order ở phương thức calculateShippingFee có sử dụng Order. 
+    // vi phạm DIP do Lớp Order phụ thuộc vào DeliveryInfo (agreegation), 
+    // nhưng DeliveryInfo cũng phụ thuộc vào Order ở phương thức calculateShippingFee có sử dụng Order. 
     // DistanceCalculator cũng được implement trong module. 
     public int calculateShippingFee(Order order) {
         int distance = distanceCalculator.calculateDistance(address, province);

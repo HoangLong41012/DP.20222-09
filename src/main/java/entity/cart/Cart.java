@@ -11,6 +11,7 @@ public class Cart {
     
     private List<CartItem> lstCartItem;
 
+    // su dụng Singleton do cart ton tai duy nhat trong he thong
     public Cart() {
         lstCartItem = new ArrayList<>();
     }

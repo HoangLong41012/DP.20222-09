@@ -22,6 +22,7 @@ import subsystem.InterbankSubsystem;
  *
  */
 public class PaymentController extends BaseController {
+	// Cac lop controller co the ap dung mau Singleton
 
 	/**
 	 * Represent the card used for payment

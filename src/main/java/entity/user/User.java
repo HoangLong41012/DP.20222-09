@@ -8,6 +8,7 @@ public class User {
     private String address;
     private String phone;
 
+    // su dung Singleton do User co duy nhat instance trong he thong
     public User(int id, String name, String email, String address, String phone) {
         this.id = id;
         this.name = name;
