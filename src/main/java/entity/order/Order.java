@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Order {
+    //Add singleton
+    SessionInformation sessionInformation = SessionInformation.getInstance();
 
     private int shippingFees;
     private int subtotal;
@@ -26,7 +28,7 @@ public class Order {
 
     public Order(Cart cart) {
         List<OrderItem> orderItems = new ArrayList<>();
-        for (Object object : SessionInformation.cartInstance.getListMedia()) {
+        for (Object object : sessionInformation.cartInstance.getListMedia()) {
             CartItem cartItem = (CartItem) object;
             OrderItem orderItem = new OrderItem(cartItem.getMedia(),
                     cartItem.getQuantity(),

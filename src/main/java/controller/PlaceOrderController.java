@@ -22,7 +22,8 @@ import java.util.regex.Pattern;
  * @author nguyenlm
  */
 public class PlaceOrderController extends BaseController {
-
+    // Add singlton
+    SessionInformation sessionInformation = SessionInformation.getInstance();
     /**
      * Just for logging purpose
      */
@@ -33,7 +34,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public void placeOrder() throws SQLException {
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        sessionInformation.cartInstance.checkAvailabilityOfProduct();
     }
 
     /**
@@ -42,7 +43,7 @@ public class PlaceOrderController extends BaseController {
      * @throws SQLException
      */
     public Order createOrder() throws SQLException {
-        return new Order(SessionInformation.cartInstance);
+        return new Order(sessionInformation.cartInstance);
     }
 
     /**
