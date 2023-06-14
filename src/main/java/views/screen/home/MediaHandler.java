@@ -43,7 +43,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     protected Spinner<Integer> spinnerChangeNumber;
 
     @FXML
-    protected Button addToCartBtn;
+    protected AddingToCartButton addToCartBtn;
 
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
@@ -53,9 +53,7 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
         super(screenPath);
         this.media = media;
         this.observerList = new ArrayList<>();
-        addToCartBtn.setOnMouseClicked(event -> {
-            notifyObservers();
-        });
+        this.addToCartBtn = new AddingToCartButtonFactory(this).createButton();
         setMediaInfo();
     }
 
