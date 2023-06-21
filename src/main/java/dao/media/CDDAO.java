@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @author
  */
-public class CDDAO extends MediaDAO {
+/*public class CDDAO extends MediaDAO {
 
     @Override
     public Media getMediaById(int id) throws SQLException {
@@ -43,5 +43,21 @@ public class CDDAO extends MediaDAO {
         } else {
             throw new SQLException();
         }
+    }
+}*/
+public class CDDAO extends MediaDAO {
+    @Override
+    public Media createMedia(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String title = resultSet.getString("title");
+        String category = resultSet.getString("category");
+        int price = resultSet.getInt("price");
+        int quantity = resultSet.getInt("quantity");
+        String type = resultSet.getString("type");
+        String artist = resultSet.getString("artist");
+        String recordLabel = resultSet.getString("recordLabel");
+        String musicType = resultSet.getString("musicType");
+        Date releasedDate = resultSet.getDate("releasedDate");
+        return new CD(id, title, category, price, quantity, type, artist, recordLabel, musicType, releasedDate);
     }
 }

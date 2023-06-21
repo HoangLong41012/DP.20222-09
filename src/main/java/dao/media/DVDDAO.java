@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @author
  */
-public class DVDDAO extends MediaDAO {
+/*public class DVDDAO extends MediaDAO {
 
     @Override
     public Media getMediaById(int id) throws SQLException {
@@ -44,5 +44,28 @@ public class DVDDAO extends MediaDAO {
         } else {
             throw new SQLException();
         }
+    }
+}*/
+public class DVDDAO extends MediaDAO {
+
+    @Override
+    public Media createMediaObject(ResultSet res) throws SQLException {
+        int id = res.getInt("id");
+        String title = res.getString("title");
+        int quantity = res.getInt("quantity");
+        String category = res.getString("category");
+        String imageUrl = res.getString("imageUrl");
+        int price = res.getInt("price");
+        String type = res.getString("type");
+        String discType = res.getString("discType");
+        String director = res.getString("director");
+        int runtime = res.getInt("runtime");
+        String studio = res.getString("studio");
+        String subtitles = res.getString("subtitle");
+        Date releasedDate = res.getDate("releasedDate");
+        String filmType = res.getString("filmType");
+
+        return new DVD(id, title, quantity, category, imageUrl, price, type,
+                discType, director, runtime, studio, subtitles, releasedDate, filmType);
     }
 }

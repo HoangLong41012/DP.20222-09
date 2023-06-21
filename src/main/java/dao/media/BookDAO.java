@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * @author
  */
-public class BookDAO extends MediaDAO {
+/*public class BookDAO extends MediaDAO {
 
     @Override
     public Media getMediaById(int id) throws SQLException {
@@ -47,5 +47,25 @@ public class BookDAO extends MediaDAO {
         } else {
             throw new SQLException();
         }
+    }
+}*/
+public class BookDAO extends MediaDAO {
+    @Override
+    public Media createMedia(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String title = resultSet.getString("title");
+        String category = resultSet.getString("category");
+        int price = resultSet.getInt("price");
+        int quantity = resultSet.getInt("quantity");
+        String type = resultSet.getString("type");
+        String author = resultSet.getString("author");
+        String coverType = resultSet.getString("coverType");
+        String publisher = resultSet.getString("publisher");
+        Date publishDate = resultSet.getDate("publishDate");
+        int numOfPages = resultSet.getInt("numOfPages");
+        String language = resultSet.getString("language");
+        String bookCategory = resultSet.getString("bookCategory");
+        return new Book(id, title, category, price, quantity, type, author, coverType,
+        publisher, publishDate, numOfPages, language, bookCategory);
     }
 }

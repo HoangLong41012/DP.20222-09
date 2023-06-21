@@ -11,8 +11,7 @@ import java.util.List;
 
 /**
  * @author
- */
-public class MediaDAO {
+ public class MediaDAO {
 
     public List getAllMedia() throws SQLException {
         Statement stm = AIMSDB.getConnection().createStatement();
@@ -61,3 +60,37 @@ public class MediaDAO {
                 + "where id=" + id + ";");
     }
 }
+ */
+ public abstract class MediaDAO {
+    public abstract Media createMedia(ResultSet resultSet) throws SQLException;
+
+    public List<Media> getAllMedia() throws SQLException {
+        Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery("SELECT * FROM Media");
+        List<Media> mediaList = new ArrayList<>();
+        while (res.next()) {
+            Media media = createMedia(res);
+            mediaList.add(media);
+        }
+        return mediaList;
+    }
+
+    public Media getMediaById(int id) throws SQLException {
+        String sql = "SELECT * FROM Media WHERE id = " + id;
+        Statement stm = AIMSDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery(sql);
+        if (res.next()) {
+            return createMedia(res);
+        }
+        return null;
+    }
+
+    public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
+        Statement stm = AIMSDB.getConnection().createStatement();
+        if (value instanceof String) {
+            value = "\"" + value + "\"";
+        }
+        stm.executeUpdate("UPDATE " + tbname + " SET " + field + "=" + value + " WHERE id=" + id);
+    }
+}
+
