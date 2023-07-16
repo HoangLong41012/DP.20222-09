@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 /**
  * @author
  */
+
+//Common coupling
 public class SessionInformation {
     public static User mainUser;
     public static Cart cartInstance = new Cart();

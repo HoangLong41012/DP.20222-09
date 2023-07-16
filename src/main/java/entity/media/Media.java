@@ -46,6 +46,7 @@ public class Media {
     }
 
     public int getQuantity() throws SQLException {
+        // Content coupling 
         int updated_quantity = new MediaDAO().getMediaById(id).quantity;
         this.quantity = updated_quantity;
         return updated_quantity;
