@@ -26,6 +26,7 @@ public class BaseController {
      * @return List[CartMedia]
      */
     public List getListCartMedia(){
+        // common coupling
         return SessionInformation.cartInstance.getListMedia();
     }
 }
