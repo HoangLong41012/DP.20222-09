@@ -24,6 +24,7 @@ public class ViewCartController extends BaseController{
      * @return subtotal
      */
     public int getCartSubtotal(){
+        // Content coupling
         // Common coupling
         int subtotal = SessionInformation.cartInstance.calSubtotal();
         return subtotal;

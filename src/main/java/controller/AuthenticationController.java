@@ -29,6 +29,7 @@ public class AuthenticationController extends BaseController {
         }
     }
 
+    // Content coupling
     public User getMainUser() throws ExpiredSessionException {
         // Common coupling
         if (SessionInformation.mainUser == null || SessionInformation.expiredTime == null || SessionInformation.expiredTime.isBefore(LocalDateTime.now())) {
@@ -49,7 +50,7 @@ public class AuthenticationController extends BaseController {
         }
     }
 
-    public void logout() {
+    public void      {
         // Common coupling
         SessionInformation.mainUser = null;
         SessionInformation.expiredTime = null;
