@@ -26,6 +26,7 @@ import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
 
 public class MediaHandler extends FXMLScreenHandler {
+	SessionInformation sessionInformation = SessionInformation.getInstance();
 
 	private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
 
@@ -85,7 +86,7 @@ public class MediaHandler extends FXMLScreenHandler {
 		btnDelete.setFont(ViewsConfig.REGULAR_FONT);
 		btnDelete.setOnMouseClicked(e -> {
 			try {
-				SessionInformation.cartInstance.removeCartMedia(cartItem); // update user cart
+				sessionInformation.getCartInstance().removeCartMedia(cartItem); // update user cart
 				cartScreen.updateCart(); // re-display user cart
 				LOGGER.info("Deleted " + cartItem.getMedia().getTitle() + " from the cart");
 			} catch (SQLException exp) {
