@@ -267,4 +267,26 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             }
         }
     }
+
+    // YC2
+    public HashMap<String, Object> getDetail(Media media) {
+        Map<String,Object> detail = new HashMap<>();
+        Class<> mediaClass = media.getClass();
+        Field[] fields = mediaClass.getDeclaredFields();
+
+        try {
+            for (Field field : fields) {
+                field.setAccessible(true);
+
+                String fieldName = field.getName();
+                Object fieldValue = field.get(media);
+
+                detailMap.put(fieldName, fieldValue);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return detail;
+    }
 }
