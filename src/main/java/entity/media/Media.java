@@ -111,4 +111,26 @@ public class Media {
         this.type = type;
         return this;
     }
+
+    // YC2
+    public HashMap<String, Object> getDetail() {
+        Map<String,Object> detail = new HashMap<>();
+        Class<> mediaClass = this.getClass();
+        Field[] fields = mediaClass.getDeclaredFields();
+
+        try {
+            for (Field field : fields) {
+                field.setAccessible(true);
+
+                String fieldName = field.getName();
+                Object fieldValue = field.get(media);
+
+                detailMap.put(fieldName, fieldValue);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return detail;
+    }
 }
