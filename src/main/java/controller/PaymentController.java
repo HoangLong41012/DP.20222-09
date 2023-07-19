@@ -22,7 +22,7 @@ import subsystem.InterbankSubsystem;
  *
  */
 public class PaymentController extends BaseController {
-
+	SessionInformation sessionInformation = SessionInformation.getInstance();
 	/**
 	 * Represent the card used for payment
 	 */
@@ -105,6 +105,6 @@ public class PaymentController extends BaseController {
 
 	public void emptyCart(){
 		// Common coupling
-        SessionInformation.cartInstance.emptyCart();
+        sessionInformation.getCartInstance().emptyCart();
     }
 }

@@ -14,7 +14,7 @@ public class DeliveryInfo {
 
     public DeliveryInfo(String name, String phone, String province, String address, String shippingInstructions, DistanceCalculator distanceCalculator) {
         this.name = name;
-        this.phone = phone;
+        this.phone = phone;p
         this.province = province;
         this.address = address;
         this.shippingInstructions = shippingInstructions;

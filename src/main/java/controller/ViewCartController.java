@@ -9,14 +9,14 @@ import entity.cart.Cart;
  * @author nguyenlm
  */
 public class ViewCartController extends BaseController{
-    
+    src/main/java/controller/AuthenticationController.java
     /**
      * This method checks the available products in Cart
      * @throws SQLException
      */
     public void checkAvailabilityOfProduct() throws SQLException{
         // Common coupling
-        SessionInformation.cartInstance.checkAvailabilityOfProduct();
+        sessionInformation.getCartInstance().checkAvailabilityOfProduct();
     }
 
     /**
@@ -25,7 +25,7 @@ public class ViewCartController extends BaseController{
      */
     public int getCartSubtotal(){
         // Common coupling
-        int subtotal = SessionInformation.cartInstance.calSubtotal();
+        int subtotal = sessionInformation.getCartInstance().calSubtotal();
         return subtotal;
     }
 
