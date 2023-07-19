@@ -1,5 +1,5 @@
 package entity.shippingutils.shippingdistance;
 
 public interface CalculatingDistance {
-  int calculateDistance(String address, String province);
+  abstract int calculateDistance(String address, String province);
 }

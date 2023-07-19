@@ -2,12 +2,9 @@ package entity.shippingutils.shippingfee;
 import entity.shippingutils.shippingdistance.CalculatingDistanceA;
 
 public class CalculatingFeeA extends CalculatingFee{
-  private String address;
-  private String province;
 
   public CalculatingFeeA(String address, String province) {
-    this.address = address;
-    this.province = province;
+    super(address, province);
   }
 
   public int calculateShippingFee(){
