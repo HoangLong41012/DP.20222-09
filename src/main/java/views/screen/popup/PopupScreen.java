@@ -19,7 +19,7 @@ public class PopupScreen extends BaseScreenHandler {
 
     @FXML
     Label message;
-    public static final float closeTime = 0.8f;
+    public static final float CLOSE_TIME = 0.8f;
 
     public PopupScreen(Stage stage) throws IOException {
         super(stage, ViewsConfig.POPUP_PATH);
