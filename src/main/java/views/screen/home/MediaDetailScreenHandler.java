@@ -36,7 +36,7 @@ import views.screen.cart.CartScreenHandler;
 import views.screen.popup.*;
 
 
-public class HomeScreenHandler extends BaseScreenHandler implements Observer {
+public class MediaDetailScreenHandler extends BaseScreenHandler implements Observer {
     SessionInformation sessionInformation = SessionInformation.getInstance();
 
     public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
@@ -63,15 +63,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
     private HBox hboxMedia;
 
     @FXML
-    private Button btnLogin;
-
-    @FXML
     private SplitMenuButton splitMenuBtnSearch;
 
-    private List homeItems;
-    private AuthenticationController authenticationController;
-
-    public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
+    public MediaDetailScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
         try {
             setupData(null);
@@ -85,6 +79,48 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         }
     }
 
+    @Override
+    public void update(Observable observable) {
+        if (observable instanceof AddToCartButton) update((AddToCartButton) observable);
+    }
+
+    private void update(AddToCardButton addToCartBtn) {
+        int requestQuantity = AddToCardButton.getRequestQuantity();
+        Media media = AddToCardButton.getMedia();
+
+        try {
+            if (requestQuantity > media.getQuantity()) throw new MediaNotAvailableException();
+            // Common coupling
+            Cart cart = sessionInformation.getCartInstance();
+            // if media already in cart then we will increase the quantity by 1 instead of create the new cartMedia
+            CartItem mediaInCart = getBController().checkMediaInCart(media);
+            if (mediaInCart != null) {
+                mediaInCart.setQuantity(mediaInCart.getQuantity() + 1);
+            } else {
+                CartItem cartItem = new CartItem(media, cart, requestQuantity, media.getPrice());
+                cart.addCartMedia(cartItem);
+                LOGGER.info("Added " + cartItem.getQuantity() + " " + media.getTitle() + " to cart");
+            }
+
+            // subtract the quantity and redisplay
+            media.setQuantity(media.getQuantity() - requestQuantity);
+            numMediaInCart.setText(cart.getTotalMedia() + " media");
+            new SuccessPopupScreen().showPopup("The media " + media.getTitle() + " added to Cart");
+        } catch (MediaNotAvailableException exp) {
+            try {
+                String message = "Not enough media:\nRequired: " + requestQuantity + "\nAvail: " + media.getQuantity();
+                LOGGER.severe(message);
+                new ErrorPopupScreen().showPopup(message);
+            } catch (Exception e) {
+                LOGGER.severe("Cannot add media to cart: ");
+            }
+
+        } catch (Exception exp) {
+            LOGGER.severe("Cannot add media to cart: ");
+            exp.printStackTrace();
+        }
+    }
+
     public Label getNumMediaCartLabel(){
         return this.numMediaInCart;
     }
@@ -95,16 +131,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     protected void setupData(Object dto) throws Exception {
         setBController(new HomeController());
-        this.authenticationController = new AuthenticationController();
         try{
-            List medium = getBController().getAllMedia();
-            this.homeItems = new ArrayList<>();
-            for (Object object : medium) {
-                Media media = (Media)object;
-                MediaHandler m = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media);
-                m.attach(this);
-                this.homeItems.add(m);
-            }
+            Media media = getBController().getMediaById();
+            this.media = media;
         } catch (SQLException | IOException e){
             LOGGER.info("Errors occurred: " + e.getMessage());
             e.printStackTrace();
@@ -129,22 +158,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
                 throw new ViewCartException(Arrays.toString(e1.getStackTrace()).replaceAll(", ", "\n"));
             }
         });
-        addMediaHome(this.homeItems);
-        addMenuItem(0, "Book", splitMenuBtnSearch);
-        addMenuItem(1, "DVD", splitMenuBtnSearch);
-        addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
     @Override
     public void show() {
-        if (authenticationController.isAnonymousSession()) {
-            btnLogin.setText("Login");
-            btnLogin.setOnMouseClicked(event -> redirectLoginScreen(event));
-        } else {
-            btnLogin.setText("User");
-            btnLogin.setOnMouseClicked(event -> {});
-        }
-        // Common coupling
         numMediaInCart.setText(String.valueOf(sessionInformation.getCartInstance().getListMedia().size()) + " media");
         super.show();
     }
@@ -208,64 +225,4 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         });
         menuButton.getItems().add(position, menuItem);
     }
-
-    @Override
-    public void update(Observable observable) {
-        if (observable instanceof AddToCartButton) update((AddToCartButton) observable);
-    }
-
-    private void update(AddToCardButton addToCartBtn) {
-        int requestQuantity = AddToCardButton.getRequestQuantity();
-        Media media = AddToCardButton.getMedia();
-
-        try {
-            if (requestQuantity > media.getQuantity()) throw new MediaNotAvailableException();
-            // Common coupling
-            Cart cart = sessionInformation.getCartInstance();
-            // if media already in cart then we will increase the quantity by 1 instead of create the new cartMedia
-            CartItem mediaInCart = getBController().checkMediaInCart(media);
-            if (mediaInCart != null) {
-                mediaInCart.setQuantity(mediaInCart.getQuantity() + 1);
-            } else {
-                CartItem cartItem = new CartItem(media, cart, requestQuantity, media.getPrice());
-                cart.addCartMedia(cartItem);
-                LOGGER.info("Added " + cartItem.getQuantity() + " " + media.getTitle() + " to cart");
-            }
-
-            // subtract the quantity and redisplay
-            media.setQuantity(media.getQuantity() - requestQuantity);
-            numMediaInCart.setText(cart.getTotalMedia() + " media");
-            new SuccessPopupScreen().showPopup("The media " + media.getTitle() + " added to Cart");
-        } catch (MediaNotAvailableException exp) {
-            try {
-                String message = "Not enough media:\nRequired: " + requestQuantity + "\nAvail: " + media.getQuantity();
-                LOGGER.severe(message);
-                new ErrorPopupScreen().showPopup(message);
-            } catch (Exception e) {
-                LOGGER.severe("Cannot add media to cart: ");
-            }
-
-        } catch (Exception exp) {
-            LOGGER.severe("Cannot add media to cart: ");
-            exp.printStackTrace();
-        }
-    }
-
-    @FXML
-    void redirectLoginScreen(MouseEvent event) {
-        try {
-            BaseScreenHandler loginScreen = new LoginScreenHandler(this.stage, ViewsConfig.LOGIN_SCREEN_PATH);
-            loginScreen.setHomeScreenHandler(this);
-            loginScreen.setBController(this.authenticationController);
-            loginScreen.show();
-        } catch (Exception ex) {
-            try {
-                new ErrorPopupScreen().showPopup("Cant trigger Login");
-            } catch (Exception ex1) {
-                LOGGER.severe("Cannot login");
-                ex.printStackTrace();
-            }
-        }
-    }
-    
 }
