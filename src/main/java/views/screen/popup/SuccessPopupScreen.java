@@ -24,7 +24,7 @@ public class SuccessPopupScreen extends PopupScreen {
   public SuccessPopupScreen(Stage stage) throws IOException {
     super(stage, ViewsConfig.POPUP_PATH);
   }
-
+  @Override
   public static showPopup(String message) throws IOException {
       SuccessPopupScreen successPopupScreen = new SuccessPopupScreen(new Stage());
       successPopupScreen.stage.initStyle(StageStyle.UNDECORATED);

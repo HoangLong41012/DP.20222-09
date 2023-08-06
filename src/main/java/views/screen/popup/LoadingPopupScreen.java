@@ -24,7 +24,7 @@ public class LoadingPopupScreen extends PopupScreen {
   public LoadingPopupScreen(Stage stage) throws IOException {
     super(stage, ViewsConfig.POPUP_PATH);
   }
-
+  @Override
   public static showPopup(String message) throws IOException {
       LoadingPopupScreen loadingPopup = new LoadingPopupScreen(new Stage());
       loadingPopup.stage.initStyle(StageStyle.UNDECORATED);

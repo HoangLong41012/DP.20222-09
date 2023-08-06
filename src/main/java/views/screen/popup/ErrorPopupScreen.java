@@ -24,7 +24,7 @@ public class ErrorPopupScreen extends PopupScreen {
   public ErrorPopupScreen(Stage stage) throws IOException {
     super(stage, ViewsConfig.POPUP_PATH);
   }
-
+  @Override
   public static showPopup(String message) throws IOException {
       ErrorPopupScreen errorPopup = new ErrorPopupScreen(new Stage());
       errorPopup.message.setText(message);

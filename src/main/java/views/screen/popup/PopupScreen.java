@@ -25,6 +25,10 @@ public class PopupScreen extends BaseScreenHandler {
         super(stage, ViewsConfig.POPUP_PATH);
     }
 
+    public static showPopup(String message) throws IOException{
+
+    }
+
     public void setImage(String path) {
         super.setImage(icon, path);
     }

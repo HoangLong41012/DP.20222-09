@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
  * @author
  */
 
-//Common coupling
+// Common coupling
 public class SessionInformation {
     private static SessionInformation instance;
     private User mainUser;
-    private Cart cartInstance;
+    private Cart cartInstance = Cart.getInstance();
     private LocalDateTime expiredTime;
 
     private SessionInformation() {
@@ -38,10 +38,6 @@ public class SessionInformation {
     public Cart getCartInstance() {
         return cartInstance;
     }
-
-    public static void setCartInstance(Cart cartInstance) {
-       this.cartInstance = cartInstance;
-   }
 
     public LocalDateTime getExpiredTime() {
         return expiredTime;
