@@ -33,10 +33,11 @@ import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.cart.CartScreenHandler;
-import views.screen.popup.PopupScreen;
+import views.screen.popup.*;
 
 
 public class HomeScreenHandler extends BaseScreenHandler implements Observer {
+    SessionInformation sessionInformation = SessionInformation.getInstance();
 
     public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
 
@@ -77,10 +78,10 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             setupFunctionality();
         } catch (IOException ex) {
             LOGGER.info(ex.getMessage());
-            PopupScreen.error("Error when loading resources.");
+            new ErrorPopupScreen().showPopup("Error when loading resources.");
         } catch (Exception ex) {
             LOGGER.info(ex.getMessage());
-            PopupScreen.error(ex.getMessage());
+            new ErrorPopupScreen().showPopup(ex.getMessage());
         }
     }
 
@@ -143,8 +144,8 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             btnLogin.setText("User");
             btnLogin.setOnMouseClicked(event -> {});
         }
-
-        numMediaInCart.setText(String.valueOf(SessionInformation.cartInstance.getListMedia().size()) + " media");
+        // Common coupling
+        numMediaInCart.setText(String.valueOf(sessionInformation.getCartInstance().getListMedia().size()) + " media");
         super.show();
     }
 
@@ -210,16 +211,17 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
 
     @Override
     public void update(Observable observable) {
-        if (observable instanceof MediaHandler) update((MediaHandler) observable);
+        if (observable instanceof AddToCartButton) update((AddToCartButton) observable);
     }
 
-    private void update(MediaHandler mediaHandler) {
-        int requestQuantity = mediaHandler.getRequestQuantity();
-        Media media = mediaHandler.getMedia();
+    private void update(AddToCardButton addToCartBtn) {
+        int requestQuantity = AddToCardButton.getRequestQuantity();
+        Media media = AddToCardButton.getMedia();
 
         try {
             if (requestQuantity > media.getQuantity()) throw new MediaNotAvailableException();
-            Cart cart = SessionInformation.cartInstance;
+            // Common coupling
+            Cart cart = sessionInformation.getCartInstance();
             // if media already in cart then we will increase the quantity by 1 instead of create the new cartMedia
             CartItem mediaInCart = getBController().checkMediaInCart(media);
             if (mediaInCart != null) {
@@ -233,12 +235,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             // subtract the quantity and redisplay
             media.setQuantity(media.getQuantity() - requestQuantity);
             numMediaInCart.setText(cart.getTotalMedia() + " media");
-            PopupScreen.success("The media " + media.getTitle() + " added to Cart");
+            new SuccessPopupScreen().showPopup("The media " + media.getTitle() + " added to Cart");
         } catch (MediaNotAvailableException exp) {
             try {
                 String message = "Not enough media:\nRequired: " + requestQuantity + "\nAvail: " + media.getQuantity();
                 LOGGER.severe(message);
-                PopupScreen.error(message);
+                new ErrorPopupScreen().showPopup(message);
             } catch (Exception e) {
                 LOGGER.severe("Cannot add media to cart: ");
             }
@@ -258,11 +260,12 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             loginScreen.show();
         } catch (Exception ex) {
             try {
-                PopupScreen.error("Cant trigger Login");
+                new ErrorPopupScreen().showPopup("Cant trigger Login");
             } catch (Exception ex1) {
                 LOGGER.severe("Cannot login");
                 ex.printStackTrace();
             }
         }
     }
+    
 }

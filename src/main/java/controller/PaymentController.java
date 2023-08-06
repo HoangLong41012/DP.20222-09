@@ -8,7 +8,7 @@ import common.exception.InvalidCardException;
 import common.exception.PaymentException;
 import common.exception.UnrecognizedException;
 import entity.cart.Cart;
-import entity.payment.CreditCard;
+import entity.payment.*;
 import entity.payment.PaymentTransaction;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
@@ -22,7 +22,7 @@ import subsystem.InterbankSubsystem;
  *
  */
 public class PaymentController extends BaseController {
-
+	SessionInformation sessionInformation = SessionInformation.getInstance();
 	/**
 	 * Represent the card used for payment
 	 */
@@ -104,6 +104,7 @@ public class PaymentController extends BaseController {
 	}
 
 	public void emptyCart(){
-        SessionInformation.cartInstance.emptyCart();
+		// Common coupling
+        sessionInformation.getCartInstance().emptyCart();
     }
 }

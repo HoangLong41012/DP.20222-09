@@ -12,7 +12,6 @@ import views.screen.ViewsConfig;
 
 import java.io.IOException;
 
-
 public class PopupScreen extends BaseScreenHandler {
 
     @FXML
@@ -20,31 +19,10 @@ public class PopupScreen extends BaseScreenHandler {
 
     @FXML
     Label message;
+    public static final float CLOSE_TIME = 0.8f;
 
-    public PopupScreen(Stage stage) throws IOException{
+    public PopupScreen(Stage stage) throws IOException {
         super(stage, ViewsConfig.POPUP_PATH);
-    }
-
-    private static PopupScreen popup(String message, String imagePath, Boolean undecorated) throws IOException{
-        PopupScreen popup = new PopupScreen(new Stage());
-        if (undecorated) popup.stage.initStyle(StageStyle.UNDECORATED);
-        popup.message.setText(message);
-        popup.setImage(imagePath);
-        return popup;
-    }
-
-    public static void success(String message) throws IOException{
-        popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickgreen.png", true)
-                .show(true);
-    }
-
-    public static void error(String message) throws IOException{
-        popup(message, ViewsConfig.IMAGE_PATH + "/" + "tickerror.png", false)
-                .show(false);
-    }
-
-    public static PopupScreen loading(String message) throws IOException{
-        return popup(message, ViewsConfig.IMAGE_PATH + "/" + "loading.gif", true);
     }
 
     public void setImage(String path) {
@@ -53,7 +31,8 @@ public class PopupScreen extends BaseScreenHandler {
 
     public void show(Boolean autoClose) {
         super.show();
-        if (autoClose) close(0.8);
+        if (autoClose)
+            close(closeTime);
     }
 
     public void show(double time) {
@@ -63,7 +42,7 @@ public class PopupScreen extends BaseScreenHandler {
 
     public void close(double time) {
         PauseTransition delay = new PauseTransition(Duration.seconds(time));
-        delay.setOnFinished( event -> stage.close() );
+        delay.setOnFinished(event -> stage.close());
         delay.play();
     }
 

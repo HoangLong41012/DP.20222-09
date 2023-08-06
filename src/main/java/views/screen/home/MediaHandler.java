@@ -43,7 +43,10 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     protected Spinner<Integer> spinnerChangeNumber;
 
     @FXML
-    protected Button addToCartBtn;
+    protected AddToCartButton addToCartBtn;
+
+    @FXML
+    protected Button viewDetails;
 
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
@@ -53,10 +56,17 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
         super(screenPath);
         this.media = media;
         this.observerList = new ArrayList<>();
-        addToCartBtn.setOnMouseClicked(event -> {
-            notifyObservers();
-        });
         setMediaInfo();
+        viewDetails.setOnMouseClicked(event -> {
+            redirectMediaDetailScreen(event);
+        })
+        addToCardBtn = new AddToCartButton(spinnerChangeNumber.getValue(), media);
+        addToCartBtn.setOnMouseClicked(event -> {
+            addToCartBtn.notifyObservers();
+        });
+        viewDetails.setOnMouseClicked(event -> {
+            media.getDetail();
+        })
     }
 
     Media getMedia(){
@@ -84,18 +94,19 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
         setImage(mediaImage, media.getImageURL());
     }
 
-    @Override
-    public void attach(Observer observer) {
-        observerList.add(observer);
-    }
-
-    @Override
-    public void remove(Observer observer) {
-        observerList.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        observerList.forEach(observer -> observer.update(this));
+    void redirectMediaDetailScreen(MouseEvent event) {
+        try {
+            BaseScreenHandler mediaDetailScreen = new MediaDetailScreen(this.stage, ViewsConfig.MEDIA_DETAIL_SCREEN_PATH);
+            mediaDetailScreen.setHomeScreenHandler(this);
+            mediaDetailScreen.setBController(this.authenticationController);
+            mediaDetailScreen.show();
+        } catch (Exception ex) {
+            try {
+                new ErrorPopupScreen().showPopup("Cant trigger Login");
+            } catch (Exception ex1) {
+                LOGGER.severe("Cannot login");
+                ex.printStackTrace();
+            }
+        }
     }
 }
